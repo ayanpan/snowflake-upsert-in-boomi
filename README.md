@@ -14,10 +14,7 @@ In Snowflake, the "upsert" operation refers to the process of performing an "upd
 :small_orange_diamond: It will streamline the workflow by providing an atomic operation that avoids conflicts and reduces error-prone scenarios.
 
 ## Implementation in Boomi
-Snowflake's MERGE operation/command has USING operator which essentially requires a source table from which the records will be merged with the target/required table. Since we need to upsert records based on primary/unique key instead of using a source table, we have to use a SQL SELECT Statement to replicate a source table.
-
-We have to pass the values which need to be inserted or updated in our required target table as JSON key-value pairs.
-
+Snowflake's MERGE operation/command has USING operator which essentially requires a source table from which the records will be merged with the target/required table. Since we need to upsert records based on primary/unique key instead of using a source table, we have to use a SQL SELECT Statement to replicate a source table. In this SQL SELECT Statement, we have to pass the values which need to be inserted or updated in our required target table as JSON key-value pairs, shown in the below sample.
 ```json
 {
    "source _id": "123",
