@@ -14,15 +14,14 @@ In Snowflake, the "upsert" operation refers to the process of performing an "upd
 :small_orange_diamond: It will streamline the workflow by providing an atomic operation that avoids conflicts and reduces error-prone scenarios.
 
 ## Implementation in Boomi
-Snowflake's MERGE operation/command has USING operator which essentially requires a source table from which the records will be merged with the target/required table. Since we need to upsert records based on primary/unique key instead of using a source table, we have to use a SQL SELECT Statement to replicate a source table. In this SQL SELECT Statement, we have to pass the values which need to be inserted or updated in our required target table as JSON key-value pairs, shown in the below sample.
+Snowflake's MERGE operation/command has USING operator which essentially requires a source table from which the records will be merged with the target/required table. Since we need to upsert records based on primary/unique key instead of using a source table, we have to use a SQL SELECT Statement to replicate a source table. In this SQL SELECT Statement, we have to pass the values which need to be inserted or updated in our required target table as JSON key-value pairs, shown in the below sample JSON.
 ```json
 {
    "source _id": "123",
    "current_date": "20231216 000000.000"
 }
 ```
-Since there isn't any MERGE Action in the Boomi's native Snowflake Connector, we can perform the MERGE operation using the SnowSQL Action.
-
+Since there isn't any MERGE Action in the Boomi's native Snowflake Connector, we can perform the MERGE operation using the SnowSQL Action, shown in the below sample SQL Statement.
 ```sql
 MERGE INTO your_table_name AS t
 USING (
@@ -38,4 +37,4 @@ WHEN NOT MATCHED THEN
     INSERT (CREATED_DATE, LAST_MODIFIED_DATE, SOURCE_ID, STATUS)
     VALUES (s.cd, s.cd, s.id, 'I');
 ```
-t
+In the USING operator of the above SQL Statement, we need to fetch the value of fields/columns from the JSON profile by setting parameters. The parameters should be defined by prefixing the $ symbol with the parameter's name. In this example, we have set 2 parameters, $source_id and $current_date, and the 2 respective keys of the incoming JSON document are source_id and current _date.
