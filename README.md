@@ -17,3 +17,12 @@ In Snowflake, the "upsert" operation refers to the process of performing an "upd
 Snowflake's MERGE operation/command has USING operator which essentially requires a source table from which the records will be merged with the target/required table. Since we need to upsert records based on primary/unique key instead of using a source table, we have to use a SQL SELECT Statement to replicate a source table.
 
 We have to pass the values which need to be inserted or updated in our required target table as JSON key-value pairs.
+
+```json
+{
+   "id": "123",
+   "new_value": "20231216 000000.000"
+}
+```
+
+t
