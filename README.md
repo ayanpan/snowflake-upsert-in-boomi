@@ -21,8 +21,7 @@ Snowflake's MERGE operation/command has USING operator which essentially require
    "current_date": "20231216 000000.000"
 }
 ```
-
-t
+Since there isn't any MERGE Action in the Boomi's native Snowflake Connector, we can perform the MERGE operation using the SnowSQL Action.
 
 ```sql
 MERGE INTO your_table_name AS t
