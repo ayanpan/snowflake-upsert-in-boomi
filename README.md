@@ -18,7 +18,7 @@ Snowflake's MERGE operation/command has USING operator which essentially require
 ```json
 {
    "source _id": "123",
-   "current_date": "20231216 000000.000"
+   "current_date": "20231216"
 }
 ```
 Since there isn't any MERGE Action in the Boomi's native Snowflake Connector, we can perform the MERGE operation using the SnowSQL Action, shown in the below sample SQL Statement.
